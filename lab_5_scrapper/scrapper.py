@@ -304,7 +304,9 @@ class HTMLParser:
         article_text.append(intro_block.text.strip())
         for el in text_blocks:
             article_text.append(el.text.strip())
-        self.article.text = ''.join(article_text)
+        text = ''.join(article_text)
+        text = re.sub(r'\s+', ' ', text)
+        self.article.text = text
 
     def _fill_article_with_meta_information(self, article_soup: BeautifulSoup) -> None:
         """
